@@ -4,7 +4,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="1024" d:DesignHeight="600"
         x:Class="SimpleCOM.MainWindow"
-        Title="SimpleCOM">
+>
 
 	<SplitView Grid.Row="2" IsPaneOpen="True"
        DisplayMode="Inline" Name="viewSplit"
@@ -21,25 +21,37 @@
 							<StackPanel Orientation="Horizontal">
 								<TextBlock Text="串行口" TextAlignment="Left"
 										   VerticalAlignment="Center" />
-								<ComboBox  HorizontalAlignment="Stretch"
-										  VerticalAlignment="Center" Margin="20,0,10,10" Width="120" />
+								<ComboBox  HorizontalAlignment="Stretch" Name="SerialList"
+										  VerticalAlignment="Center" Margin="20,0,10,10" Width="120"/>
 							</StackPanel>
 							<StackPanel Orientation="Horizontal">
 								<TextBlock  Text="波特率" TextAlignment="Left"
 										   VerticalAlignment="Center" Margin="5,0,0,0"/>
 								<ComboBox  HorizontalAlignment="Stretch"
-										  VerticalAlignment="Center" Margin="20,0,10,10" Width="120"/>
+										  VerticalAlignment="Center" Margin="20,0,10,10" Width="120" Name="BaudRateList" SelectedIndex="5">
+									<ComboBoxItem Content="4800 "/>
+									<ComboBoxItem Content="9600 "/>
+									<ComboBoxItem Content="19200 "/>
+									<ComboBoxItem Content="38400 "/>
+									<ComboBoxItem Content="57600 "/>
+									<ComboBoxItem Content="115200  "/>
+								</ComboBox>
 							</StackPanel>
 							<StackPanel Orientation="Horizontal">
 								<TextBlock  Text="数据位" TextAlignment="Left"
 										   VerticalAlignment="Center" />
-								<ComboBox  HorizontalAlignment="Stretch" Margin="20,0,10,10" Width="120"/>
+								<ComboBox  HorizontalAlignment="Stretch" Margin="20,0,10,10" Width="120" Name="DataBitsList" SelectedIndex="0">
+									<ComboBoxItem Content="5 "/>
+									<ComboBoxItem Content="6 "/>
+									<ComboBoxItem Content="7 "/>
+									<ComboBoxItem Content="8 "/>
+								</ComboBox>
 							</StackPanel>
 							<StackPanel Orientation="Horizontal">
 								<TextBlock  Text="校验位" TextAlignment="Left"
 										   VerticalAlignment="Center" Margin="5,0,0,0"/>
 								<ComboBox HorizontalAlignment="Stretch"
-										  VerticalAlignment="Center" Margin="20,0,10,10" Width="120">
+										  VerticalAlignment="Center" Margin="20,0,10,10" Width="120" SelectedIndex="0">
 									<ComboBoxItem Content="无"/>
 									<ComboBoxItem Content="奇校验"/>
 									<ComboBoxItem Content="偶校验"/>
@@ -50,7 +62,7 @@
 							<StackPanel Orientation="Horizontal">
 								<TextBlock  Text="停止位" TextAlignment="Left"
 										   VerticalAlignment="Center" Margin="0,0,0,0"/>
-								<ComboBox  HorizontalAlignment="Stretch"
+								<ComboBox  HorizontalAlignment="Stretch" SelectedIndex="0"
 										  VerticalAlignment="Center" Margin="20,0,10,10" Width="120">
 									<ComboBoxItem Content="1"/>
 									<ComboBoxItem Content="1.5"/>
@@ -60,7 +72,7 @@
 							<StackPanel Orientation="Horizontal">
 								<TextBlock  Text="流控类" TextAlignment="Left"
 										   VerticalAlignment="Center" Margin="5,0,0,0"/>
-								<ComboBox  HorizontalAlignment="Stretch"
+								<ComboBox  HorizontalAlignment="Stretch" SelectedIndex="0"
 										  VerticalAlignment="Center" Margin="20,0,10,10" Width="120">
 									<ComboBoxItem Content="无"/>
 									<ComboBoxItem Content="RTS/CTS"/>
@@ -70,9 +82,9 @@
 						</UniformGrid>
 					</Border>
 					<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-						<Button FontSize="20">开始</Button>
-						<Button Margin="20" FontSize="20">暂停</Button>
-						<Button FontSize="20">关闭</Button>
+						<Button FontSize="20" Click="StartPort">开始</Button>
+						<Button Margin="20" FontSize="20" Click="StopPort">暂停</Button>
+						<Button FontSize="20" Click="ClosePort">关闭</Button>
 					</StackPanel>
 
 				</StackPanel>
@@ -120,7 +132,7 @@
 			<TextBox Grid.Row="0" Grid.ColumnSpan="2" IsReadOnly="False" Margin="0,0,5,5"
 					 ScrollViewer.VerticalScrollBarVisibility="Auto" VerticalContentAlignment="Top" HorizontalContentAlignment="Left"
 					 VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
-					 TextWrapping="Wrap" Text="接收文本"
+					 TextWrapping="Wrap" Text="接收文本" Name="ReciveTextShow"
 					 />
 			<TextBox Grid.Row="1" Grid.ColumnSpan="2" Margin="0,0,5,5"
 					 
@@ -140,7 +152,7 @@
 						Command=""
 						IsEnabled=""
 						/>
-			
+
 
 		</Grid>
 	</SplitView>
