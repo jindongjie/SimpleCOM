@@ -1,0 +1,150 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="1024" d:DesignHeight="600"
+        x:Class="SimpleCOM.MainWindow"
+        Title="SimpleCOM">
+
+	<SplitView Grid.Row="2" IsPaneOpen="True"
+       DisplayMode="Inline" Name="viewSplit"
+       OpenPaneLength="500" PaneBackground="#1e1e1e">
+		<SplitView.Pane>
+
+			<Grid RowDefinitions="6*,4*,4*">
+
+				<StackPanel VerticalAlignment="Stretch">
+					<Label Margin="8" FontSize="18">串口设置</Label>
+					<Border BorderThickness="1" BorderBrush="WhiteSmoke" Padding="5" 	CornerRadius="4" Margin="6" VerticalAlignment="Stretch">
+
+						<UniformGrid Columns="2">
+							<StackPanel Orientation="Horizontal">
+								<TextBlock Text="串行口" TextAlignment="Left"
+										   VerticalAlignment="Center" />
+								<ComboBox  HorizontalAlignment="Stretch"
+										  VerticalAlignment="Center" Margin="20,0,10,10" Width="120" />
+							</StackPanel>
+							<StackPanel Orientation="Horizontal">
+								<TextBlock  Text="波特率" TextAlignment="Left"
+										   VerticalAlignment="Center" Margin="5,0,0,0"/>
+								<ComboBox  HorizontalAlignment="Stretch"
+										  VerticalAlignment="Center" Margin="20,0,10,10" Width="120"/>
+							</StackPanel>
+							<StackPanel Orientation="Horizontal">
+								<TextBlock  Text="数据位" TextAlignment="Left"
+										   VerticalAlignment="Center" />
+								<ComboBox  HorizontalAlignment="Stretch" Margin="20,0,10,10" Width="120"/>
+							</StackPanel>
+							<StackPanel Orientation="Horizontal">
+								<TextBlock  Text="校验位" TextAlignment="Left"
+										   VerticalAlignment="Center" Margin="5,0,0,0"/>
+								<ComboBox HorizontalAlignment="Stretch"
+										  VerticalAlignment="Center" Margin="20,0,10,10" Width="120">
+									<ComboBoxItem Content="无"/>
+									<ComboBoxItem Content="奇校验"/>
+									<ComboBoxItem Content="偶校验"/>
+									<ComboBoxItem Content="标记校验"/>
+									<ComboBoxItem Content="空格校验"/>
+								</ComboBox>
+							</StackPanel>
+							<StackPanel Orientation="Horizontal">
+								<TextBlock  Text="停止位" TextAlignment="Left"
+										   VerticalAlignment="Center" Margin="0,0,0,0"/>
+								<ComboBox  HorizontalAlignment="Stretch"
+										  VerticalAlignment="Center" Margin="20,0,10,10" Width="120">
+									<ComboBoxItem Content="1"/>
+									<ComboBoxItem Content="1.5"/>
+									<ComboBoxItem Content="2"/>
+								</ComboBox>
+							</StackPanel>
+							<StackPanel Orientation="Horizontal">
+								<TextBlock  Text="流控类" TextAlignment="Left"
+										   VerticalAlignment="Center" Margin="5,0,0,0"/>
+								<ComboBox  HorizontalAlignment="Stretch"
+										  VerticalAlignment="Center" Margin="20,0,10,10" Width="120">
+									<ComboBoxItem Content="无"/>
+									<ComboBoxItem Content="RTS/CTS"/>
+									<ComboBoxItem Content="DTR/CTS"/>
+								</ComboBox>
+							</StackPanel>
+						</UniformGrid>
+					</Border>
+					<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+						<Button FontSize="20">开始</Button>
+						<Button Margin="20" FontSize="20">暂停</Button>
+						<Button FontSize="20">关闭</Button>
+					</StackPanel>
+
+				</StackPanel>
+
+				<Grid Grid.Row="1" RowDefinitions="3*,0.2*,2*,*,*,*" ColumnDefinitions="*,*">
+					<TextBlock Grid.Row="0" Grid.ColumnSpan="2" VerticalAlignment="Center"
+						   Text="接收设置" Margin="5,0" FontSize="18"/>
+					<Border Grid.Row="1" Grid.RowSpan="6" Grid.ColumnSpan="2"
+							BorderThickness="1" BorderBrush="WhiteSmoke" Padding="5"
+							CornerRadius="2" Margin="5"/>
+					<RadioButton Grid.Row="2" Grid.Column="0" GroupName="Receive"
+								 Content="ASCII" Margin="10,5"/>
+					<RadioButton Grid.Row="2" Grid.Column="1" GroupName="Receive"
+								 Content="Hex" Margin="10,5"/>
+					<CheckBox Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"
+								 Content="自动换行" Margin="10,5"/>
+					<CheckBox Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"
+								 Content="显示发送" Margin="10,5"/>
+					<CheckBox Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2"
+								 Content="显示时间" Margin="10,5"/>
+				</Grid>
+				<Grid Grid.Row="2" RowDefinitions="*,0.2*,2*,1.5*" ColumnDefinitions="*,1.5*">
+					<TextBlock Grid.Row="0" Grid.ColumnSpan="2" VerticalAlignment="Bottom"
+						   Text="发送设置" Margin="5"/>
+					<Border Grid.Row="1" Grid.RowSpan="6" Grid.ColumnSpan="2"
+							BorderThickness="1" BorderBrush="WhiteSmoke" Margin="5"
+							CornerRadius="2"/>
+					<RadioButton Grid.Row="2" Grid.Column="0" GroupName="Send"
+								 Content="ASCII" Margin="10,5"/>
+					<RadioButton Grid.Row="2" Grid.Column="1" GroupName="Send"
+								 Content="Hex" Margin="10,5"/>
+					<CheckBox Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"
+								 Content="循环发送" Margin="10,0,0,10"/>
+					<StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal">
+						<NumericUpDown  VerticalAlignment="Stretch" Width="170"
+									   Margin="10,0,0,10" Padding="5"/>
+						<TextBlock Text="ms" VerticalAlignment="Center" Margin="5,5,5,10"/>
+					</StackPanel>
+				</Grid>
+			</Grid>
+		</SplitView.Pane>
+
+		<Grid RowDefinitions="*,70,40" ColumnDefinitions="*,100">
+
+			<TextBox Grid.Row="0" Grid.ColumnSpan="2" IsReadOnly="False" Margin="0,0,5,5"
+					 ScrollViewer.VerticalScrollBarVisibility="Auto" VerticalContentAlignment="Top" HorizontalContentAlignment="Left"
+					 VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+					 TextWrapping="Wrap" Text="接收文本"
+					 />
+			<TextBox Grid.Row="1" Grid.ColumnSpan="2" Margin="0,0,5,5"
+					 
+					 ScrollViewer.VerticalScrollBarVisibility="Auto"
+						TextWrapping="Wrap"
+					 Text="发送文本"
+					 />
+			<ComboBox Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,5,5"
+						  SelectedIndex="" Items=""
+						 
+						  Name="CbbHistory"
+						  />
+			<Button Grid.Row="2" Grid.Column="1" VerticalAlignment="Stretch"
+						HorizontalAlignment="Stretch" Margin="0,0,5,5"
+						Content="发送" FontSize="15" Padding="0"
+						VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+						Command=""
+						IsEnabled=""
+						/>
+			
+
+		</Grid>
+	</SplitView>
+
+
+
+</Window>
