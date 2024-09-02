@@ -15,7 +15,11 @@ namespace SimpleCOM
         {
             if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
             {
-                desktop.MainWindow = new MainWindow();
+                desktop.MainWindow = new SplitWindows();
+            }
+            else if (ApplicationLifetime is ISingleViewApplicationLifetime singleView)
+            {
+                singleView.MainView = new MainWindow();
             }
 
             base.OnFrameworkInitializationCompleted();
